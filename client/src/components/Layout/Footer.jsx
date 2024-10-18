@@ -21,10 +21,10 @@ const Footer = () => {
           </div>
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <p className="text-sm">123 Learning Street</p>
-            <p className="text-sm">Eduville, EL 12345</p>
-            <p className="text-sm">Phone: (123) 456-7890</p>
-            <p className="text-sm">Email: info@testlearningapp.com</p>
+            <p className="text-sm"> Jhansi</p>
+            <p className="text-sm">Ashish sharma</p>
+            <p className="text-sm">Phone: (+91) 9140585097</p>
+            <p className="text-sm">Email: ashishsharmastudio@gmail.com</p>
           </div>
           <div className="w-full md:w-1/4">
             <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
