@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 api.interceptors.request.use(
@@ -13,7 +13,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject('error is ocuring in aoi.jsx',error);
+    return Promise.reject('error is occurring in api.js', error);
   }
 );
 
