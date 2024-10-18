@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAuthenticated, logout } = useContext(AuthContext);
 
   return (
     <nav className="bg-gray-800 p-4">
@@ -10,10 +12,12 @@ const Navigation = () => {
         <div className="text-white font-bold text-xl">Thinkgray E-learning</div>
         <div className="hidden md:flex space-x-4">
           <Link to="/" className="text-white hover:text-gray-300">Home</Link>
-          
           <Link to="/courses" className="text-white hover:text-gray-300">Courses</Link>
           <Link to="/profile" className="text-white hover:text-gray-300">Profile</Link>
           <Link to="/reports" className="text-white hover:text-gray-300">Reports</Link>
+          {isAuthenticated && (
+            <button onClick={logout} className="text-white hover:text-gray-300">Logout</button>
+          )}
         </div>
         <div className="md:hidden">
           <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none">
@@ -33,6 +37,9 @@ const Navigation = () => {
           <Link to="/courses" className="block text-white py-2 px-4 hover:bg-gray-700">Courses</Link>
           <Link to="/profile" className="block text-white py-2 px-4 hover:bg-gray-700">Profile</Link>
           <Link to="/reports" className="block text-white py-2 px-4 hover:bg-gray-700">Reports</Link>
+          {isAuthenticated && (
+            <button onClick={logout} className="block w-full text-left text-white py-2 px-4 hover:bg-gray-700">Logout</button>
+          )}
         </div>
       )}
     </nav>
