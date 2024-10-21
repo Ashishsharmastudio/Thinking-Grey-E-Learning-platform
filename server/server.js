@@ -9,7 +9,7 @@ const userRoutes = require('./routes/userRoutes');
 const errorHandler = require('./middleware/errorHandler');
 const cors = require('cors');
 const cron = require('node-cron');
-const https = require('https');
+const https = require('http');
 
 const app = express();
 dotenv.config();
@@ -70,10 +70,14 @@ cron.schedule('*/10 * * * *', () => {
 
   const req = https.request(options, res => {
     console.log(`Self-ping response: ${res.statusCode}`);
+    res.on('data', (chunk) => {
+      console.log(`Response body: ${chunk}`);
+    });
   });
 
   req.on('error', error => {
-    console.error('Self-ping failed:', error);
+    console.error('Self-ping failed:', error.message);
+    console.error('Error details:', error);
   });
 
   req.end();
