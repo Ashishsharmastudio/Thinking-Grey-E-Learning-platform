@@ -24,7 +24,7 @@ const Login = () => {
     } else {
       try {
         await handleVerifyOtp(email, otp);
-        console.log('Login successful!');
+        // console.log('Login successful!');
         const from = location.state?.from?.pathname || '/';
         navigate(from, { replace: true });
       } catch (error) {

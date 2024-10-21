@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true);
     } else {
       setIsAuthenticated(false);
-      console.log("User not authenticated");
+      // console.log("User not authenticated");
     }
   }, []);
 
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   const handleVerifyOtp = async (email, otp) => {
     try {
       const response = await verifyOtp(email, otp);
-      console.log('Full response from server:', response);
+      // console.log('Full response from server:', response);
       if (response && response.data && response.data.token) {
         setToken(response.data.token);
         localStorage.setItem('token', response.data.token);

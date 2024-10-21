@@ -13,7 +13,7 @@ const CourseList = () => {
         try {
           const response = await api.get('/courses');
           setCourses(response.data);
-          console.log('Fetched courses:', response.data);
+          // console.log('Fetched courses:', response.data);
         } catch (error) {
           console.error('Error fetching courses in courselist.jsx:', error);
           if (error.response && error.response.status === 401) {

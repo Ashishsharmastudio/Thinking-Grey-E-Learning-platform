@@ -7,7 +7,7 @@ export const login = (email, language) => {
 export const verifyOtp = async (email, otp) => {
   try {
     const response = await api.post('/auth/verify-otp', { email, otp });
-    console.log('API response from  verifyOtp/auth,jsx:', response);
+    // console.log('API response from  verifyOtp/auth,jsx:', response);
     return response;
   } catch (error) {
     console.error('Error in verifyOtp:', error);
