@@ -2,6 +2,7 @@ const Quiz = require("../models/Quiz");
 const UserProgress = require("../models/UserProgress");
 
 exports.getQuiz = async (req, res) => {
+  console.log("User ID from auth:", req.user);
   try {
     const quiz = await Quiz.findOne({ courseId: req.params.courseId });
     if (!quiz) {
@@ -14,7 +15,9 @@ exports.getQuiz = async (req, res) => {
 };
 
 exports.submitQuiz = async (req, res) => {
-  const { userId, courseId, answers } = req.body;
+  const userId = req.user;
+  const {courseId, answers } = req.body;
+  console.log("User ID when submiting quizzz:", userId,courseId,answers);
   try {
     const quiz = await Quiz.findOne({ courseId });
     if (!quiz) {
@@ -30,18 +33,18 @@ exports.submitQuiz = async (req, res) => {
 
     const result = await UserProgress.findOneAndUpdate(
       { userId, courseId },
-      { quizStatus: "Completed", quizScore: score, completionDate: new Date() },
+      { userId,quizStatus: "Completed", quizScore: score, completionDate: new Date() },
       { new: true, upsert: true }
     );
-    console.log('Updated UserProgress:', result);
+    console.log("User ID when submiting quizzz 2:", userId);
+    console.log("Updated UserProgress:", result);
 
     res.status(200).json({ score });
   } catch (error) {
-    console.error('Error in submitQuiz:', error);
+    console.error("Error in submitQuiz:", error);
     res.status(500).json({ error: "Server error" });
   }
 };
-
 
 exports.addQuiz = async (req, res) => {
   try {
